@@ -9,12 +9,11 @@ const router = new Router()
 const JWT_SECRET = 'your_jwt_secret_key'
 
 // 登录接口
-router.post('/login', async (ctx) => {
+router.post('/api/login', async (ctx) => {
 	const { username, password } = ctx.request.body
 
 	try {
 		const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username])
-
 		if (rows.length === 0) {
 			ctx.status = 401
 			ctx.body = {
@@ -26,7 +25,6 @@ router.post('/login', async (ctx) => {
 
 		const user = rows[0]
 		const isPasswordValid = await bcrypt.compare(password, user.password)
-
 		if (!isPasswordValid) {
 			ctx.status = 401
 			ctx.body = {
@@ -41,7 +39,11 @@ router.post('/login', async (ctx) => {
 		ctx.body = {
 			code: '200',
 			message: 'Login successful',
-			token,
+			data:{
+                token:token,
+                username:username,
+                avatar:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+            },
 		}
 	} catch (error) {
 		console.log('error', error)
