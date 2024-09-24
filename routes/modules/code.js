@@ -16,11 +16,16 @@ const redisClient = redis.createClient({
 
 redisClient.connect().catch(console.error) // 连接 Redis
 
+//Redis 监听错误事件
 redisClient.on('error', (err) => {
 	console.log('Redis error:', err)
 })
 
-const router = new Router()
+const router =  new Router()
+
+/**
+ * @description 生成随机的6位数验证码
+ */
 const runCode = function (num) {
 	let code = ''
 	for (let i = 0; i < num; i++) {

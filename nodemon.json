@@ -1,0 +1,6 @@
+{
+	"watch": ["./app.js"],
+	"ext": "js",
+	"exec": "node dist/bundle.js",
+	"ignore": ["dist/*"]
+}

@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
-    "start": "nodemon app.js"
+    "start": "nodemon dist/bundle.js", 
+    "build": "webpack --config build/webpack.prod.js",
+    "dev": "webpack --config build/webpack.dev.js && nodemon dist/bundle.js" 
   },
   "keywords": [],
   "author": "",
@@ -25,11 +26,20 @@
     "redis": "^4.7.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "babel-loader": "^9.2.1",
     "chai": "^4.5.0",
     "chai-http": "^4.4.0",
     "esm": "^3.2.25",
     "mocha": "^10.7.3",
-    "nodemon": "^3.1.4",
-    "supertest": "^7.0.0"
+    "nodemon": "^3.1.7",
+    "supertest": "^7.0.0",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-middleware": "^7.4.2",
+    "webpack-hot-middleware": "^2.26.1",
+    "webpack-merge": "^6.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
