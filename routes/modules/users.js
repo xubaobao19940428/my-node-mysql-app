@@ -4,7 +4,7 @@ const pool = require('../../config/db')
 const router = new Router()
 
 // 获取所有用户或单个用户的接口
-router.get('api/users', async (ctx) => {
+router.get('/api/users', async (ctx) => {
 	const { id } = ctx.query
 
 	try {
